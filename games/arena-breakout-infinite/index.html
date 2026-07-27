@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arena Breakout: Infinite — The Cabinet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="op-header">
+    <a class="op-header__back" href="../../index.html">&larr; THE CABINET</a>
+    <div class="op-header__title-row">
+      <h1>ARENA BREAKOUT: INFINITE</h1>
+      <span class="op-header__tag">EXTRACTION SHOOTER</span>
+    </div>
+    <nav class="tabs">
+      <button class="tab tab--active" data-tab="builds">Builds</button>
+    </nav>
+  </header>
+
+  <main class="op-main">
+
+    <section id="tab-builds" class="tab-panel">
+
+      <div id="config-warning" class="banner" hidden>
+        <strong>Not connected yet.</strong> Add your Supabase URL and anon key to
+        <code>shared/config.js</code> to turn on builds. See the README for setup steps.
+      </div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="search-box__prompt">&gt;</span>
+          <input id="build-search" type="text" placeholder="search builds_" autocomplete="off" />
+        </div>
+        <button id="open-post-modal" class="btn btn--primary">+ Post Build</button>
+      </div>
+
+      <div id="builds-status" class="status-line"></div>
+      <div id="builds-grid" class="builds-grid"></div>
+
+    </section>
+
+  </main>
+
+  <!-- Post Build Modal -->
+  <dialog id="post-modal">
+    <form id="post-form" class="post-form">
+      <div class="post-form__header">
+        <h2>Post a Build</h2>
+        <button type="button" id="close-post-modal" class="icon-btn" aria-label="Close">&times;</button>
+      </div>
+
+      <label class="field">
+        <span>Build title <em>(e.g. "Meta AKS-74U")</em></span>
+        <input type="text" id="field-title" required maxlength="80" placeholder="Weapon / build name" />
+      </label>
+
+      <label class="field">
+        <span>Description</span>
+        <textarea id="field-description" rows="3" maxlength="400" placeholder="What's it good for? Recoil, range, budget vs meta, etc."></textarea>
+      </label>
+
+      <label class="field">
+        <span>Screenshot</span>
+        <input type="file" id="field-image" accept="image/*" />
+        <img id="image-preview" hidden alt="Preview" />
+      </label>
+
+      <label class="field">
+        <span>Build code</span>
+        <textarea id="field-code" rows="3" required placeholder="Paste the in-game build code here"></textarea>
+      </label>
+
+      <label class="field">
+        <span>Your tag <em>(optional)</em></span>
+        <input type="text" id="field-author" maxlength="40" placeholder="Anonymous" />
+      </label>
+
+      <div id="post-error" class="post-error" hidden></div>
+
+      <div class="post-form__footer">
+        <button type="button" id="cancel-post" class="btn">Cancel</button>
+        <button type="submit" id="submit-post" class="btn btn--primary">Publish Build</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="../../shared/config.js"></script>
+  <script src="js/builds.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cabinet — Game Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <header class="hub-header">
+    <div class="hub-header__brand">
+      <span class="hub-header__mark">▮▮</span>
+      <h1>THE CABINET</h1>
+    </div>
+    <p class="hub-header__tagline">Pick a cartridge and load in.</p>
+  </header>
+
+  <main class="hub-main">
+    <div class="hub-toolbar">
+      <div class="search-box">
+        <span class="search-box__prompt">&gt;</span>
+        <input id="search" type="text" placeholder="search library_" autocomplete="off" />
+      </div>
+      <span id="count" class="hub-toolbar__count">0 titles</span>
+    </div>
+
+    <div id="grid" class="grid"></div>
+    <p id="empty" class="empty-state" hidden>No cartridge matches "<span id="empty-term"></span>". Try another search.</p>
+  </main>
+
+  <footer class="hub-footer">
+    <span>gamestuff/ — add a new folder under <code>games/</code> and an entry in <code>js/main.js</code> to load in another title.</span>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
