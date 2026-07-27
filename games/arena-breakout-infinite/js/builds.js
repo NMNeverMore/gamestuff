@@ -1,6 +1,3 @@
-// ---------------------------------------------------------------
-// Config
-// ---------------------------------------------------------------
 const GAME_ID = 'arena-breakout-infinite';
 const BUCKET = 'build-images';
 const TABLE = 'builds';
@@ -18,9 +15,6 @@ if (isConfigured) {
   document.getElementById('config-warning').hidden = false;
 }
 
-// ---------------------------------------------------------------
-// Elements
-// ---------------------------------------------------------------
 const grid = document.getElementById('builds-grid');
 const statusLine = document.getElementById('builds-status');
 const searchInput = document.getElementById('build-search');
@@ -42,9 +36,6 @@ const fieldAuthor = document.getElementById('field-author');
 
 let allBuilds = [];
 
-// ---------------------------------------------------------------
-// Rendering
-// ---------------------------------------------------------------
 function escapeHTML(str) {
   const div = document.createElement('div');
   div.textContent = str ?? '';
@@ -111,9 +102,6 @@ grid.addEventListener('click', async (e) => {
   }
 });
 
-// ---------------------------------------------------------------
-// Fetch
-// ---------------------------------------------------------------
 async function loadBuilds() {
   if (!sb) return;
   statusLine.textContent = 'Loading builds…';

@@ -1,9 +1,3 @@
-// ---------------------------------------------------------------
-// GAME REGISTRY
-// Add a new object here whenever you add a new folder under games/.
-// `path` is relative to this index.html file.
-// `spine` is a hex color used as the card's left accent border.
-// ---------------------------------------------------------------
 const GAMES = [
   {
     id: 'arena-breakout-infinite',
