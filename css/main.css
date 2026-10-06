@@ -21,7 +21,6 @@ body {
   min-height: 100vh;
 }
 
-/* subtle scanline / grid texture on the body */
 body {
   background-image:
     linear-gradient(var(--surface) 1px, transparent 1px),

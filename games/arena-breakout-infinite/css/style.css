@@ -8,6 +8,8 @@
   --accent: #ff9f1c;
   --accent-2: #7c8a5a;
   --danger: #c1552c;
+  --seasonal: #d9823b;
+  --permanent: #6f8f7c;
   --font-display: 'Oswald', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -155,6 +157,30 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 12px;
 }
 
+.filter-group {
+  display: flex;
+  gap: 2px;
+  border: 1px solid var(--line);
+}
+
+.filter-btn {
+  background: var(--surface);
+  border: none;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-right: 1px solid var(--line);
+}
+.filter-btn:last-child { border-right: none; }
+.filter-btn--active {
+  background: var(--surface-2);
+  color: var(--accent);
+}
+
 /* ---------- buttons ---------- */
 
 .btn {
@@ -189,7 +215,7 @@ a { color: inherit; text-decoration: none; }
 }
 .icon-btn:hover { color: var(--text); }
 
-/* ---------- builds grid ---------- */
+/* ---------- builds grid (shared layout, also used by red items) ---------- */
 
 .builds-grid {
   display: grid;
@@ -229,16 +255,12 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 1px;
 }
 
-/* reticle corner brackets */
 .build-card__image-wrap::before,
-.build-card__image-wrap::after,
-.build-card__image-wrap > .corner-tl,
-.build-card__image-wrap > .corner-br {
+.build-card__image-wrap::after {
   content: "";
   position: absolute;
   width: 16px;
   height: 16px;
-  border-color: var(--accent);
   pointer-events: none;
 }
 .build-card__image-wrap::before {
@@ -322,6 +344,36 @@ a { color: inherit; text-decoration: none; }
   font-size: 14px;
 }
 
+/* ---------- red item specifics ---------- */
+
+.item-card__value {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+
+.item-card__value-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.item-tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border: 1px solid currentColor;
+  width: fit-content;
+}
+.item-tag--seasonal { color: var(--seasonal); }
+.item-tag--permanent { color: var(--permanent); }
+
 /* ---------- modal ---------- */
 
 dialog {
@@ -330,6 +382,8 @@ dialog {
   color: var(--text);
   padding: 0;
   width: min(520px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 dialog::backdrop {
   background: rgba(10, 11, 7, 0.7);
@@ -374,6 +428,7 @@ dialog::backdrop {
 }
 
 .field input[type="text"],
+.field input[type="number"],
 .field textarea {
   background: var(--bg);
   border: 1px solid var(--line);
@@ -386,6 +441,7 @@ dialog::backdrop {
   resize: vertical;
 }
 .field input[type="text"]:focus,
+.field input[type="number"]:focus,
 .field textarea:focus {
   outline: none;
   border-color: var(--accent);
@@ -397,13 +453,32 @@ dialog::backdrop {
   color: var(--text-dim);
 }
 
-#image-preview {
+#image-preview,
+#item-image-preview {
   max-width: 100%;
   max-height: 160px;
   object-fit: cover;
   margin-top: 6px;
   border: 1px solid var(--line);
 }
+
+.radio-row {
+  display: flex;
+  gap: 14px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.radio-option input { accent-color: var(--accent); }
 
 .post-error {
   background: rgba(193, 85, 44, 0.12);

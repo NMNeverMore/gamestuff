@@ -18,16 +18,18 @@
     </div>
     <nav class="tabs">
       <button class="tab tab--active" data-tab="builds">Builds</button>
+      <button class="tab" data-tab="red-items">Red Items</button>
     </nav>
   </header>
 
   <main class="op-main">
 
+    <!-- ===================== BUILDS TAB ===================== -->
     <section id="tab-builds" class="tab-panel">
 
       <div id="config-warning" class="banner" hidden>
         <strong>Not connected yet.</strong> Add your Supabase URL and anon key to
-        <code>shared/config.js</code> to turn on builds. See the README for setup steps.
+        <code>shared/config.js</code> to turn on builds and red items. See the README for setup steps.
       </div>
 
       <div class="toolbar">
@@ -40,6 +42,27 @@
 
       <div id="builds-status" class="status-line"></div>
       <div id="builds-grid" class="builds-grid"></div>
+
+    </section>
+
+    <!-- ===================== RED ITEMS TAB ===================== -->
+    <section id="tab-red-items" class="tab-panel" hidden>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="search-box__prompt">&gt;</span>
+          <input id="item-search" type="text" placeholder="search red items_" autocomplete="off" />
+        </div>
+        <div class="filter-group">
+          <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="seasonal">Seasonal</button>
+          <button class="filter-btn" data-filter="permanent">Permanent</button>
+        </div>
+        <button id="open-item-modal" class="btn btn--primary">+ Add Red Item</button>
+      </div>
+
+      <div id="items-status" class="status-line"></div>
+      <div id="items-grid" class="builds-grid"></div>
 
     </section>
 
@@ -88,8 +111,57 @@
     </form>
   </dialog>
 
+  <!-- Add Red Item Modal -->
+  <dialog id="item-modal">
+    <form id="item-form" class="post-form">
+      <div class="post-form__header">
+        <h2>Add Red Item</h2>
+        <button type="button" id="close-item-modal" class="icon-btn" aria-label="Close">&times;</button>
+      </div>
+
+      <label class="field">
+        <span>Item name</span>
+        <input type="text" id="item-field-name" required maxlength="80" placeholder="Item name" />
+      </label>
+
+      <label class="field">
+        <span>Image</span>
+        <input type="file" id="item-field-image" accept="image/*" />
+        <img id="item-image-preview" hidden alt="Preview" />
+      </label>
+
+      <label class="field">
+        <span>Value <em>(in-game)</em></span>
+        <input type="number" id="item-field-value" min="0" step="1" required placeholder="e.g. 450000" />
+      </label>
+
+      <label class="field">
+        <span>Tag</span>
+        <div class="radio-row">
+          <label class="radio-option">
+            <input type="radio" name="item-tag" value="seasonal" checked />
+            <span>Seasonal Item</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="item-tag" value="permanent" />
+            <span>Permanent Item</span>
+          </label>
+        </div>
+      </label>
+
+      <div id="item-error" class="post-error" hidden></div>
+
+      <div class="post-form__footer">
+        <button type="button" id="cancel-item" class="btn">Cancel</button>
+        <button type="submit" id="submit-item" class="btn btn--primary">Add Item</button>
+      </div>
+    </form>
+  </dialog>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="../../shared/config.js"></script>
+  <script src="js/tabs.js"></script>
   <script src="js/builds.js"></script>
+  <script src="js/red-items.js"></script>
 </body>
 </html>

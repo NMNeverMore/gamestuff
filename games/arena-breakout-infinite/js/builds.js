@@ -1,6 +1,9 @@
+// ---------------------------------------------------------------
+// Config
+// ---------------------------------------------------------------
 const GAME_ID = 'arena-breakout-infinite';
-const BUCKET = 'build-images';
-const TABLE = 'builds';
+const BUILDS_BUCKET = 'build-images';
+const BUILDS_TABLE = 'builds';
 
 const isConfigured =
   window.SUPABASE_URL &&
@@ -15,6 +18,9 @@ if (isConfigured) {
   document.getElementById('config-warning').hidden = false;
 }
 
+// ---------------------------------------------------------------
+// Elements
+// ---------------------------------------------------------------
 const grid = document.getElementById('builds-grid');
 const statusLine = document.getElementById('builds-status');
 const searchInput = document.getElementById('build-search');
@@ -36,6 +42,9 @@ const fieldAuthor = document.getElementById('field-author');
 
 let allBuilds = [];
 
+// ---------------------------------------------------------------
+// Rendering
+// ---------------------------------------------------------------
 function escapeHTML(str) {
   const div = document.createElement('div');
   div.textContent = str ?? '';
@@ -102,11 +111,14 @@ grid.addEventListener('click', async (e) => {
   }
 });
 
+// ---------------------------------------------------------------
+// Fetch
+// ---------------------------------------------------------------
 async function loadBuilds() {
   if (!sb) return;
   statusLine.textContent = 'Loading builds…';
   const { data, error } = await sb
-    .from(TABLE)
+    .from(BUILDS_TABLE)
     .select('*')
     .eq('game_id', GAME_ID)
     .order('created_at', { ascending: false });
@@ -173,13 +185,13 @@ form.addEventListener('submit', async (e) => {
 
     if (file) {
       const path = `${GAME_ID}/${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
-      const { error: uploadError } = await sb.storage.from(BUCKET).upload(path, file);
+      const { error: uploadError } = await sb.storage.from(BUILDS_BUCKET).upload(path, file);
       if (uploadError) throw uploadError;
-      const { data: urlData } = sb.storage.from(BUCKET).getPublicUrl(path);
+      const { data: urlData } = sb.storage.from(BUILDS_BUCKET).getPublicUrl(path);
       imageUrl = urlData.publicUrl;
     }
 
-    const { error: insertError } = await sb.from(TABLE).insert({
+    const { error: insertError } = await sb.from(BUILDS_TABLE).insert({
       game_id: GAME_ID,
       title: fieldTitle.value.trim(),
       description: fieldDescription.value.trim(),

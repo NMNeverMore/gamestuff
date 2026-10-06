@@ -1,3 +1,9 @@
+// ---------------------------------------------------------------
+// GAME REGISTRY
+// Add a new object here whenever you add a new folder under games/.
+// `path` is relative to this index.html file.
+// `spine` is a hex color used as the card's left accent border.
+// ---------------------------------------------------------------
 const GAMES = [
   {
     id: 'arena-breakout-infinite',
@@ -6,7 +12,7 @@ const GAMES = [
     tags: ['fps', 'extraction', 'tactical', 'pvp'],
     spine: '#e8a33d',
     path: 'games/arena-breakout-infinite/index.html',
-    blurb: 'Loot-and-extract tactical FPS. Community weapon builds and meta loadouts.',
+    blurb: 'Loot-and-extract tactical FPS. Builds, meta loadouts, and red item tracking.',
   },
 ];
 

@@ -1,3 +1,6 @@
+-- Run this once in your Supabase project's SQL Editor.
+-- (Dashboard -> SQL Editor -> New query -> paste this in -> Run)
+
 create extension if not exists pgcrypto;
 
 create table if not exists builds (
@@ -13,13 +16,22 @@ create table if not exists builds (
 
 alter table builds enable row level security;
 
+-- Anyone can view builds
 create policy "public can read builds"
   on builds for select
   using (true);
 
+-- Anyone can post a build (no login required, per the brief)
 create policy "public can insert builds"
   on builds for insert
   with check (true);
+
+-- ---------------------------------------------------------------
+-- Storage policies for the build-images bucket.
+-- First create the bucket in the dashboard: Storage -> New bucket
+-- -> name it "build-images" -> toggle "Public bucket" ON -> Create.
+-- Then run the two policies below.
+-- ---------------------------------------------------------------
 
 create policy "public can read build images"
   on storage.objects for select
