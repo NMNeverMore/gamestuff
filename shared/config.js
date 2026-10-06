@@ -8,5 +8,5 @@
 // don't overwrite this file when copying the new arena-breakout-infinite
 // folder in.
 // ---------------------------------------------------------------
-window.SUPABASE_URL = "https://idgseccmogcnldpzfynk.supabase.co/rest/v1/";
+window.SUPABASE_URL = "https://idgseccmogcnldpzfynk.supabase.co";
 window.SUPABASE_ANON_KEY = "sb_publishable_PeCh3Gi-2qMorFR3IVjZcQ_gJTGJZyp";
